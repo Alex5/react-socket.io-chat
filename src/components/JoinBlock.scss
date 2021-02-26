@@ -1,0 +1,62 @@
+.join-block {
+  /* Rectangle 2 */
+  padding: 40px;
+  background: #FFFFFF;
+  /* drop1 */
+  box-shadow: 0 0 39px rgba(0, 0, 0, 0.09);
+  border-radius: 25px;
+
+  h1 {
+    font-family: Gilroy, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    color: #000000;
+    margin-bottom: 100px;
+
+    span {
+      font-size: 48px;
+    }
+  }
+
+  .input-form {
+    display: flex;
+    flex-direction: column;
+
+
+    :focus {
+      outline: none;
+      border: 2px solid black;
+      border-radius: 20px;
+      transition: ease-in-out 0.2s;
+    }
+
+    input {
+      Height: 65px;
+      background: #F8F8F8;
+      border: 1px solid #E2E2E2;
+      box-sizing: border-box;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      padding: 15px;
+      transition: ease-in-out 0.1s;
+    }
+
+    label {
+      margin-bottom: 20px;
+    }
+  }
+
+  button {
+    height: 65px;
+    background: #000000;
+    border: 1px solid #E2E2E2;
+    border-radius: 20px;
+    color: white;
+
+    &:active {
+      transition: ease-in-out 0.1s;
+      background: lighten(black, 10%);
+    }
+  }
+}

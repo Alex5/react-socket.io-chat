@@ -1,12 +1,16 @@
 import React from 'react'
-import socket from "./../socket";
+
+import './JoinBlock.scss'
 
 const JoinBlock = () => {
     return (
-        <div>
-            <input type="text" placeholder="Room ID" value=''/>
-            <input type="text" placeholder='Ваше имя' value=''/>
-            <button>Join</button>
+        <div className="join-block">
+            <h1>Realtime Chat <span>&#129311;</span></h1>
+            <div className="input-form">
+                <input autoFocus={true} placeholder="ROOM ID" type="text" value=''/>
+                <input type="text" placeholder='Ваше имя' value=''/>
+                <button>Join</button>
+            </div>
         </div>
     )
 }
