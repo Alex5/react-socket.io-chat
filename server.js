@@ -1,5 +1,5 @@
 const express = require('express')
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 
 const app = express()
 const httpServer = require('http').createServer(app)
@@ -13,10 +13,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 const rooms = new Map()
-
-app.get('/', (req, res) => {
-    res.render('App.js')
-})
 
 app.get('/rooms/:id', (req, res) => {
     const {id: roomId} = req.params
