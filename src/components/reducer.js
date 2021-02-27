@@ -1,10 +1,25 @@
 export default (state, action) => {
     switch (action.type) {
-        case 'IS_JOIN':
+        case 'JOINED':
             return {
-                ...state, isJoin: action.payload
+                ...state,
+                joined: true,
+                userName: action.payload.userName,
+                roomId: action.payload.roomId
             }
+        case 'SET_USERS':
+            return {
+                ...state,
+                users: action.payload
+            }
+        case 'SET_MESSAGES':
+            return {
+                ...state,
+                messages: action.payload
+            }
+
+
         default:
-           return state;
+            return state;
     }
 }

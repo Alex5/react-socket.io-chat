@@ -6,18 +6,19 @@ import './JoinBlock.scss'
 
 const JoinBlock = ({onLogin}) => {
     const [roomId, setRoomId] = React.useState('')
-    const [username, setUserName] = React.useState('')
+    const [userName, setUserName] = React.useState('')
     const [isLoading, setIsLoading] = React.useState(false)
 
-    const onEnter = () => {
-        if (!roomId || !username) {
+    const onEnter = async () => {
+        if (!roomId || !userName) {
             return alert('Неверные данные')
         }
-        axios
-            .post('/rooms', {
-                roomId, username
-            })
-            .then(onLogin)
+        const obj = {
+            roomId, userName
+        }
+        setIsLoading(true)
+        await axios.post('/rooms', obj);
+        onLogin(obj);
     }
 
     return (
@@ -31,9 +32,9 @@ const JoinBlock = ({onLogin}) => {
                        onChange={e => setRoomId(e.target.value)}/>
                 <input type="text"
                        placeholder='Ваше имя'
-                       value={username}
+                       value={userName}
                        onChange={e => setUserName(e.target.value)}/>
-                <button onClick={onEnter}>JOIN</button>
+                <button disabled={isLoading} onClick={onEnter}>{isLoading ? 'JOINED...' : 'JOIN'}</button>
             </div>
         </div>
     )

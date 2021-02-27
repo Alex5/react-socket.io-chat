@@ -25,13 +25,18 @@
 
 
     .sidebar-room {
+
       & > * {
         margin-bottom: 20px;
       }
 
       &__name {
+
+        &.active {
+          box-shadow: 0px 0px 39px rgba(0, 0, 0, 0.09);
+        }
+
         color: black;
-        font-weight: bold;
         padding: 15px;
         border-radius: 10px;
 
@@ -46,12 +51,17 @@
           box-shadow: 0px 0px 39px rgba(0, 0, 0, 0.09);
         }
 
-
+        span {
+          font-weight: bold;
+        }
       }
 
       &__channel {
+
+        padding: 15px;
+        border: 1px solid #e5e5e5;
+        border-radius: 12px;
         p {
-          font-weight: bold;
           margin-bottom: 15px;
           padding: 15px;
           border-radius: 10px;
@@ -71,12 +81,16 @@
         ul {
           list-style: none;
 
+
+
           li {
             font-size: 14px;
             color: #909090;
             margin-bottom: 5px;
             padding: 10px;
             border-radius: 10px;
+            display: flex;
+            align-items: center;
 
             &:hover {
               background: #ececec;
@@ -87,6 +101,15 @@
             &:active {
               background: #FFFFFF;
               box-shadow: 0px 0px 39px rgba(0, 0, 0, 0.09);
+            }
+
+            span {
+              background: darkseagreen;
+              height: 10px;
+              width: 10px;
+              display: block;
+              border-radius: 50px;
+              margin-right: 10px;
             }
           }
         }
@@ -169,7 +192,7 @@
       display: flex;
       height: 40px;
 
-      input {
+      textarea {
         outline: none;
         margin-right: 15px;
         width: 100%;
