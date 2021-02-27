@@ -1,3 +1,6 @@
+
+
+
 .chat {
 
   h1 {
@@ -181,7 +184,6 @@
           padding: 15px;
           background: rgba(0, 0, 0, 0.05);
           border-radius: 15px;
-          max-width: 300px;
         }
 
       }
@@ -213,6 +215,51 @@
 
         &:active {
           background: lighten(black, 15%);
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .chat {
+    &-container {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .content {
+      width: 100%;
+
+      &-messages {
+        height: 550px;
+      }
+    }
+
+    .sidebar {
+      display: none;
+    }
+
+    .sidebar-small {
+      display: flex;
+      overflow: auto;
+      width: 100%;
+      padding: 20px;
+      background: #FCFCFC;
+      border: 1px solid #EEEEEE;
+      box-sizing: border-box;
+      justify-content: space-between;
+
+      &__avatars {
+        display: flex;
+
+        div {
+          margin-right: 5px;
         }
       }
     }

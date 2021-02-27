@@ -28,7 +28,7 @@ const Chat = ({users, messages, roomId, userName, onAddMessage}) => {
             <div className="chat-container">
                 <div className="sidebar">
                     <div className="sidebar-room">
-                        <div className="sidebar-room__name active">Room: <span>{roomId}</span></div>
+                        <div className="sidebar-room__name">Room: <span>{roomId}</span></div>
                         <div className="sidebar-room__channel">
                             <p>Text channel ({users.length})</p>
                             <ul>
@@ -40,6 +40,16 @@ const Chat = ({users, messages, roomId, userName, onAddMessage}) => {
                             <p>Video channel</p>
                         </div>
                     </div>
+                </div>
+                <div className="sidebar-small">
+                    <div className="sidebar-room">
+                        <h3>Room: <span>{roomId}</span></h3>
+                    </div>
+                    {/*<div className="sidebar-small__avatars">*/}
+                    {/*    <div>1</div>*/}
+                    {/*    <div>2</div>*/}
+                    {/*    <div>3</div>*/}
+                    {/*</div>*/}
                 </div>
                 <div className="content">
                     <div className="content-header">
