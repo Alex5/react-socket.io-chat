@@ -14,6 +14,10 @@ app.use(express.urlencoded({extended: true}))
 
 const rooms = new Map()
 
+app.get('/', (req, res) => {
+    res.render('App.js')
+})
+
 app.get('/rooms/:id', (req, res) => {
     const {id: roomId} = req.params
     const obj = rooms.has(roomId)

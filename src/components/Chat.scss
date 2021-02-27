@@ -195,7 +195,6 @@
         outline: none;
         margin-right: 15px;
         width: 100%;
-        color: red;
         border-radius: 10px;
         border: 1px solid lightgray;
         padding: 10px;
@@ -204,12 +203,12 @@
       button {
         padding: 10px;
         border-radius: 10px;
-        background: black;
+        background: cornflowerblue;
         color: white;
         border: none;
 
         &:hover {
-          background: lighten(black, 10%);
+          background: darken(cornflowerblue, 5%);
         }
 
         &:active {
