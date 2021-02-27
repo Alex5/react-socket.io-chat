@@ -51,6 +51,16 @@ io.on('connection', socket => {
         console.log(roomId, userName)
     })
 
+    socket.on('ROOM:NEW_MESSAGE', ({roomId, userName, text}) => {
+        const obj = {
+            userName,
+            text
+        }
+        // сохраняем всё в "базе данных"
+        rooms.get(roomId).get('messages').push(obj)
+        socket.to(roomId).broadcast.emit('ROOM:NEW_MESSAGE', obj)
+    })
+
     socket.on('disconnect', () => {
         rooms.forEach((value, roomId) => {
             if (value.get('users').delete(socket.id)) {

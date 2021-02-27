@@ -1,8 +1,25 @@
 import React from 'react'
+import socket from "../socket";
 
 import './Chat.scss'
 
-const Chat = ({users, messages, roomId}) => {
+const Chat = ({users, messages, roomId, userName, onAddMessage}) => {
+    const [messageValue, setMessageValue] = React.useState('')
+    const messageRef = React.useRef(null)
+
+    const onSendMessage = () => {
+        socket.emit('ROOM:NEW_MESSAGE', {
+            userName,
+            roomId,
+            text: messageValue,
+        })
+        onAddMessage({userName, text: messageValue})
+        setMessageValue('')
+    }
+
+    React.useEffect(() => {
+        messageRef.current.scrollTo(0, 99999)
+    },[messages])
 
     console.log(users)
     return (
@@ -13,7 +30,7 @@ const Chat = ({users, messages, roomId}) => {
                     <div className="sidebar-room">
                         <div className="sidebar-room__name active">Room: <span>{roomId}</span></div>
                         <div className="sidebar-room__channel">
-                            <p >Text channel ({users.length})</p>
+                            <p>Text channel ({users.length})</p>
                             <ul>
 
                                 {users.map((name, index) => (
@@ -21,9 +38,6 @@ const Chat = ({users, messages, roomId}) => {
                                 ))}
                             </ul>
                             <p>Video channel</p>
-                            <ul>
-                                <li>Tanisha King</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -35,23 +49,20 @@ const Chat = ({users, messages, roomId}) => {
                     </div>
 
                     <div className="content-separator"></div>
-                    <div className="content-messages">
-                        <div className="content-messages__item">
-                            <span>Tanisha King</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Mauris non sapien dui. Quisque dapibus sit amet nibh eget congue. Sed sit amet lacus
-                                eget
-                                velit laoreet dapibus id tempor elit. In condimentum nunc vel molestie mollis. Maecenas
-                                eget
-                                leo metus. Ut eget sollicitudin libero. Pellentesque sed dapibus nunc, non pretium odio.
-                                Ut
-                                non pretium massa, at mollis diam. Nulla sem mauris, finibus ut mauris in, venenatis
-                                tristique justo.</p>
-                        </div>
+                    <div ref={messageRef} className="content-messages">
+                        {messages.map(message => (
+                            <div className="content-messages__item">
+                                <span>{message.userName}:</span>
+                                <div className="content-messages__item-text">
+                                    <p>{message.text}</p>
+                                </div>
+
+                            </div>
+                        ))}
                     </div>
                     <div className="content-input">
-                        <textarea rows='3' />
-                        <button>Send</button>
+                        <textarea value={messageValue} onChange={e => setMessageValue(e.target.value)} rows='3'/>
+                        <button onClick={onSendMessage}>Send</button>
                     </div>
                 </div>
             </div>
