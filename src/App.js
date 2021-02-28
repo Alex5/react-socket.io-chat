@@ -2,9 +2,12 @@ import React from 'react'
 import socket from "./socket";
 
 import reducer from "././components/reducer";
+import axios from "axios";
+import {Route} from 'react-router-dom'
+
 import JoinBlock from "./components/JoinBlock";
 import Chat from "./components/Chat";
-import axios from "axios";
+
 
 const App = () => {
 
@@ -53,9 +56,13 @@ const App = () => {
 
     return (
         <>
-            {!state.joined ? <JoinBlock onLogin={onLogin}/> : <Chat {...state} onAddMessage={addMessage}/>}
+            {!state.joined
+                ? <JoinBlock onLogin={onLogin}/>
+                : <Chat {...state} onAddMessage={addMessage}/>}
         </>
     );
 }
 
 export default App;
+
+

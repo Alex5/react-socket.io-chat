@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 const rooms = new Map()
 
-
 app.get('/rooms/:id', (req, res) => {
     const {id: roomId} = req.params
     const obj = rooms.has(roomId)
@@ -37,6 +36,7 @@ app.post('/rooms', (req, res) => {
                 ['messages', []],
             ]))
     }
+
     res.send()
 })
 
@@ -51,7 +51,6 @@ io.on('connection', socket => {
         const users = [...rooms.get(roomId).get('users').values()]
         // в определенной комнате, всем кроме меня нужно отправить сокет запрос
         socket.to(roomId).broadcast.emit('ROOM:SET_USERS', users)
-        console.log(roomId, userName)
     })
 
     socket.on('ROOM:NEW_MESSAGE', ({roomId, userName, text}) => {

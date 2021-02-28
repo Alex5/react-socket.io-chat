@@ -21,9 +21,8 @@ export default (state, action) => {
         case 'NEW_MESSAGE':
             return {
                 ...state,
-                messages: [...state.messages, action.payload]
-            }
-
+                messages: [...state.messages, action.payload],
+            };
 
         default:
             return state;

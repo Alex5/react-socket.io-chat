@@ -10,9 +10,10 @@ const JoinBlock = ({onLogin}) => {
     const [isLoading, setIsLoading] = React.useState(false)
 
     const onEnter = async () => {
-        if (!roomId || !userName) {
+        if (!userName) {
             return alert('Неверные данные')
         }
+        const roomId = ID()
         const obj = {
             roomId, userName
         }
@@ -21,15 +22,19 @@ const JoinBlock = ({onLogin}) => {
         onLogin(obj);
     }
 
+    const ID = function () {
+        return Math.random().toString(36).substr(2, 9);
+    };
+
     return (
         <div className="join-block">
             <h1>Realtime Chat <span>&#129311;</span></h1>
             <div className="input-form">
-                <input autoFocus={true}
-                       placeholder="ROOM ID"
-                       type="text"
-                       value={roomId}
-                       onChange={e => setRoomId(e.target.value)}/>
+                {/*<input autoFocus={true}*/}
+                {/*       placeholder="ROOM ID"*/}
+                {/*       type="text"*/}
+                {/*       value={roomId}*/}
+                {/*       onChange={e => setRoomId(e.target.value)}/>*/}
                 <input type="text"
                        placeholder='Ваше имя'
                        value={userName}

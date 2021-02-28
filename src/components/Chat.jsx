@@ -5,21 +5,21 @@ import './Chat.scss'
 
 const Chat = ({users, messages, roomId, userName, onAddMessage}) => {
     const [messageValue, setMessageValue] = React.useState('')
-    const messageRef = React.useRef(null)
+    const messagesRef = React.useRef(null)
 
     const onSendMessage = () => {
         socket.emit('ROOM:NEW_MESSAGE', {
             userName,
             roomId,
             text: messageValue,
-        })
-        onAddMessage({userName, text: messageValue})
-        setMessageValue('')
-    }
+        });
+        onAddMessage({ userName, text: messageValue });
+        setMessageValue('');
+    };
 
     React.useEffect(() => {
-        messageRef.current.scrollTo(0, 99999)
-    },[messages])
+        messagesRef.current.scrollTo(0, 99999);
+    }, [messages]);
 
     console.log(users)
     return (
@@ -59,7 +59,7 @@ const Chat = ({users, messages, roomId, userName, onAddMessage}) => {
                     </div>
 
                     <div className="content-separator"></div>
-                    <div ref={messageRef} className="content-messages">
+                    <div ref={messagesRef} className="content-messages">
                         {messages.map(message => (
                             <div className="content-messages__item">
                                 <span>{message.userName}:</span>
